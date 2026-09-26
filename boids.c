@@ -1,5 +1,3 @@
-// gcc -g -Wall -Wextra -fsanitize=address -o boids.exe -lm boids.c $(sdl2-config --cflags --libs)
-
 /* Importation des modules */
 #include <SDL2/SDL.h>
 #include <stdio.h>
@@ -153,12 +151,6 @@ void render(rectangle_list_t groupe, SDL_Texture* background, SDL_Texture* fish,
         SDL_RenderCopyEx(renderer, fish, NULL, &groupe.poissons[i].rect, angle, NULL, SDL_FLIP_NONE);
         }
       }
-
-    /* Affichage de la cible */
-    /* SDL_Rect vrai_target = {target.x, target.y, 8, 8}; */
-    /* SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); */
-    /* SDL_RenderFillRect(renderer, &vrai_target); */
-
     SDL_RenderPresent(renderer);
 }
 
@@ -338,36 +330,12 @@ int main(int argc, char *argv[]){
   target_t target = {300, 100, 0};
   render(groupe, background, fish, target);
 
-  /* Gestion des résultats */
-  FILE* fichier_donnees = fopen("res.csv", "w");
-  fprintf(fichier_donnees, "Pas_de_Temps, Ordre_de_Polarisation\n");
-
-  int timer = 1;
-  int counter = 0;
-  double total_order_1 = 0;
-
   while (game_is_running){
-    /* Gestion du calcul de l'ordre */
-    if (timer > 100){
-      total_order_1 += calcul_order_1(groupe);
-      counter += 1;
-    }
-    if (timer == 400){
-      printf("Ordre de Vicsek moyen : %f\n", total_order_1/counter);
-      break;
-    }
-    /* if (timer == 101){ */
-    /*   printf("Ordre de Vicsek : %f\n", calcul_order_1(groupe)); */
-    /*   break; */
-    /* } */
-    fprintf(fichier_donnees, "%d, %f\n", timer, calcul_order_1(groupe));
-    timer += 1;
     update(groupe, &target);
     SDL_Delay(30);
     render(groupe, background, fish, target);
     process_input();
   }
-  fclose(fichier_donnees);
   destroy_window();
   free(groupe.poissons);
 
