@@ -15,20 +15,20 @@
 
 #define NOISE_FACTOR 30
 
-#define ADVOID_FACTOR 0.5 // 0.5 (0.01) si diminue poisson plus proche
-#define MATCHING_FACTOR 0.5 // 0.5 si diminue on diminue l'ordre
-#define CENTER_FACTOR 0.05 // 0.05 si diminue on augmente l'ordre
+#define ADVOID_FACTOR 0.5 
+#define MATCHING_FACTOR 0.5 
+#define CENTER_FACTOR 0.05 
 
-#define PROTECT_RADIUS 25 // (60) si diminue poisson plus proche
-#define VISUAL_RADIUS 150 // (700) si diminue on diminue l'ordre (grosse influence)
+#define PROTECT_RADIUS 25 
+#define VISUAL_RADIUS 150
 
-#define MIN_SPEED 120 // 2.5
-#define MAX_SPEED 150 // 5
+#define MIN_SPEED 120
+#define MAX_SPEED 150 
 
 #define DT 0.03
 
 #define LEADER_FACTOR 0.5
 #define TARGET_RADIUS 300 
-#define TARGET_SPEED 0.025 // 0.01
+#define TARGET_SPEED 0.025
 
 #endif
